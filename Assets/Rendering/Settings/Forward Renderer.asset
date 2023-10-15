@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4334067789681458173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459833df3ca8d43c1972dfb8a1285dbf, type: 3}
+  m_Name: Volumetric Light
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    downsampling: 1
+    stage: 2
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    intensity: 2
+    scattering: 0
+    steps: 10
+    maxDistance: 75
+    jitter: 100
+    gaussBlur:
+      amount: 4
+      samples: 2
+    shader: {fileID: 4800000, guid: b66b13ed2ae1b4bd6b579afada88001b, type: 3}
+    renderPassEvent: 550
+--- !u!114 &-2723163983436924738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592daeef818a14b78aabd31044bf4715, type: 3}
+  m_Name: Volumetric Clouds
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    downsampling: 1
+    container:
+      pos: {x: 0, y: 100, z: 0}
+      scale: {x: 5000, y: 40, z: 5000}
+    raymarch:
+      steps: 30
+      jitter: 100
+    shape:
+      cloudOffset: {x: 0, y: 0, z: 0}
+      detailOffset: {x: 0, y: 0, z: 0}
+      shapeNoise: {fileID: 11700000, guid: 0f25117cd69eb49c5b95832e6e1692b5, type: 2}
+      detailTexture: {fileID: 11700000, guid: 5dc5a5a1d808d40678ee2692571dabd8, type: 2}
+      weatherMap: {fileID: 11700000, guid: 696d701708f65454d9b43a198e903245, type: 2}
+      cloudScale: 1.08
+      detailScale: 4
+      weatherMapScale: 0.06
+      detailSpeed: 0.05
+      baseSpeed: 0.01
+      densMultiplier: 0.38
+      densOffset: 3.6
+    weights:
+      shapeWeight: 2.59
+      detailWeight: 0.4
+      weatherWeight: 0.93
+    lighting:
+      lightDensSteps: 5
+      lightAbsorption: 1.45
+      cloudLightAbsorption: 1.2
+      darknessThreshold: 0.07
+      phaseParams: {x: 0.915, y: 0.867, z: 0.953, w: 0.453}
+      backScattering: 0.915
+      frontScattering: 0.867
+      baseBrightness: 0.953
+      phaseIntensity: 0.453
+      shadows:
+        enabled: 1
+        receiveDetail: 1
+        steps: 2
+        jitter: 0.3
+    renderPassEvent: 550
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
+  m_Name: Forward Renderer
+  m_EditorClassIdentifier: 
+  debugShaders:
+    debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
+  m_RendererFeatures:
+  - {fileID: -2723163983436924738}
+  - {fileID: -4334067789681458173}
+  m_RendererFeatureMap: beb81af6c86035da030493e34e4cdac3
+  m_UseNativeRenderPass: 0
+  postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
+  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
+  shaders:
+    blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
+    copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+    screenSpaceShadowPS: {fileID: 4800000, guid: 0f854b35a0cf61a429bd5dcfea30eddd, type: 3}
+    samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
+    stencilDeferredPS: {fileID: 4800000, guid: e9155b26e1bc55942a41e518703fe304, type: 3}
+    fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
+    materialErrorPS: {fileID: 4800000, guid: 5fd9a8feb75a4b5894c241777f519d4e, type: 3}
+    coreBlitPS: {fileID: 4800000, guid: 93446b5c5339d4f00b85c159e1159b7c, type: 3}
+    coreBlitColorAndDepthPS: {fileID: 4800000, guid: d104b2fc1ca6445babb8e90b0758136b, type: 3}
+    cameraMotionVector: {fileID: 4800000, guid: c56b7e0d4c7cb484e959caeeedae9bbf, type: 3}
+    objectMotionVector: {fileID: 4800000, guid: 7b3ede40266cd49a395def176e1bc486, type: 3}
+  m_AssetVersion: 1
+  m_OpaqueLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_TransparentLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_DefaultStencilState:
+    overrideStencilState: 0
+    stencilReference: 15
+    stencilCompareFunction: 8
+    passOperation: 2
+    failOperation: 0
+    zFailOperation: 0
+  m_ShadowTransparentReceive: 1
+  m_RenderingMode: 0
+  m_DepthPrimingMode: 0
+  m_AccurateGbufferNormals: 0
+  m_ClusteredRendering: 0
+  m_TileSize: 32
+  m_IntermediateTextureMode: 1
